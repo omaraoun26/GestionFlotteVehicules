@@ -1,0 +1,38 @@
+type,immatriculation,marque,modele,annee,kilometrage,disponible,tarifJournalier
+
+Voiture,AA-101,Volkswagen,Golf,2022,15000,true,55
+Voiture,AA-102,BMW,Série 3,2021,22000,true,75
+Voiture,AA-103,Mercedes-Benz,Classe C,2020,30000,false,80
+Voiture,AA-104,Audi,A4,2023,12000,true,78
+Voiture,AA-105,Peugeot,308,2022,18000,true,52
+Voiture,AA-106,Renault,Mégane,2021,25000,true,50
+Voiture,AA-107,Škoda,Octavia,2020,40000,false,48
+Voiture,AA-108,Volvo,S60,2023,8000,true,72
+Voiture,AA-109,Fiat,Tipo,2022,16000,true,46
+Voiture,AA-110,Seat,Leon,2021,27000,true,49
+
+Camion,BB-201,Volvo,FH16,2021,80000,true,120
+Camion,BB-202,Mercedes-Benz,Actros,2020,95000,true,130
+Camion,BB-203,MAN,TGX,2019,120000,false,140
+Camion,BB-204,Scania,R500,2022,60000,true,150
+Camion,BB-205,DAF,XF,2021,70000,true,135
+Camion,BB-206,Iveco,S-Way,2020,90000,true,125
+Camion,BB-207,Renault Trucks,T High,2019,110000,false,128
+Camion,BB-208,Volvo,FMX,2023,50000,true,160
+Camion,BB-209,Mercedes-Benz,Arocs,2022,65000,true,158
+Camion,BB-210,MAN,TGS,2021,78000,true,145
+
+Moto,CC-301,BMW,F900R,2023,5000,true,55
+Moto,CC-302,Ducati,Monster,2022,9000,true,60
+Moto,CC-303,KTM,890 Duke,2021,15000,false,58
+Moto,CC-304,Triumph,Street Triple,2024,3000,true,62
+Moto,CC-305,Aprilia,Tuono 660,2023,4000,true,57
+Moto,CC-306,Moto Guzzi,V7,2022,7000,true,54
+Moto,CC-307,Ducati,Multistrada V2,2021,11000,true,68
+Moto,CC-308,BMW,S1000R,2020,18000,false,72
+Moto,CC-309,KTM,390 Duke,2023,3500,true,48
+Moto,CC-310,Triumph,Tiger Sport 660,2022,6000,true,65
+
+Voiture,AA-999,Audi,A6,1800,25000,true,70
+Camion,BB-999,Volvo,FH16,2022,-5000,true,130
+Moto,CC-999,Ducati,Monster,2023,8000,oui,60

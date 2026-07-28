@@ -1,0 +1,29 @@
+Projet : Gestion d'une flotte de véhicules
+
+Membres :
+- Omar Aoun
+- Zied Gherissi
+
+=========================================
+Omar Aoun
+=========================================
+
+- Conception de la hiérarchie des classes (Vehicule, Voiture, Camion, Moto)
+- Création des interfaces Louable et Entretenable
+- Développement de la classe GestionFlotte
+- Création des fichiers CSV
+- Lecture des fichiers CSV
+- Calcul des statistiques
+- Tests et validation de l'application
+
+=========================================
+Zied Gherissi
+=========================================
+
+- Participation au développement de la classe GestionFlotte
+- Gestion des locations
+- Gestion des retours
+- Gestion des opérations d'entretien
+- Création des exceptions personnalisées
+- Validation des données
+- Génération du rapport TXT

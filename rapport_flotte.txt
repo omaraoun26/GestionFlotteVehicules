@@ -1,0 +1,20 @@
+===== RAPPORT DE LA FLOTTE =====
+
+Date de génération : 26/07/2026 23:04:27
+
+Nombre total de véhicules : 30
+Véhicules disponibles : 24
+Véhicules en entretien : 0
+
+Revenu total généré : 6530,00 $
+Kilométrage moyen : 37083,33 km
+Tarif journalier moyen : 86,50 $
+
+Véhicule le plus utilisé : AA-101 avec 2 locations
+
+Taux d'utilisation des voitures : 50,00 %
+Taux d'utilisation des camions : 50,00 %
+Taux d'utilisation des motos : 50,00 %
+
+===== VÉHICULES NÉCESSITANT UN ENTRETIEN =====
+Aucun véhicule ne nécessite un entretien.
