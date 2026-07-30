@@ -1,6 +1,7 @@
 package omar.modele;
 import omar.interfaces.Louable;
 import omar.interfaces.Entretenable;
+import omar.exceptions.KilometrageInvalideException;
 
 public abstract class Vehicule implements Louable, Entretenable {
 
@@ -105,7 +106,15 @@ public abstract class Vehicule implements Louable, Entretenable {
     }
 
     @Override
-    public void retourner(double kilometresParcourus) {
+    public void retourner(double kilometresParcourus)
+            throws KilometrageInvalideException {
+
+        if (kilometresParcourus < 0) {
+            throw new KilometrageInvalideException(
+                    "Le kilométrage parcouru ne peut pas être négatif."
+            );
+        }
+
         this.kilometrage += kilometresParcourus;
         disponible = true;
     }

@@ -4,6 +4,7 @@ import omar.modele.Vehicule;
 import omar.exceptions.VehiculeIndisponibleException;
 import java.util.ArrayList;
 import omar.exceptions.DonneesVehiculeInvalidesException;
+import omar.exceptions.KilometrageInvalideException;
 import omar.modele.Voiture;
 import omar.modele.Camion;
 import omar.modele.Moto;
@@ -70,7 +71,7 @@ public class GestionFlotte {
     public void retournerVehicule(
             String immatriculation,
             double kilometresParcourus
-    ) {
+    ) throws KilometrageInvalideException {
         Vehicule vehicule = rechercherVehicule(immatriculation);
 
         if (vehicule != null) {
