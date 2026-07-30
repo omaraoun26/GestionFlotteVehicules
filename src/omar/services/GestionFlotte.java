@@ -7,6 +7,7 @@ import omar.exceptions.DonneesVehiculeInvalidesException;
 import omar.modele.Voiture;
 import omar.modele.Camion;
 import omar.modele.Moto;
+import omar.modele.FabriqueVehicule;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -156,49 +157,16 @@ public class GestionFlotte {
 
                     Vehicule vehicule;
 
-                    switch (type.toLowerCase()) {
-
-                        case "voiture":
-                            vehicule = new Voiture(
-                                    immatriculation,
-                                    marque,
-                                    modele,
-                                    annee,
-                                    kilometrage,
-                                    disponible,
-                                    tarifJournalier
-                            );
-                            break;
-
-                        case "camion":
-                            vehicule = new Camion(
-                                    immatriculation,
-                                    marque,
-                                    modele,
-                                    annee,
-                                    kilometrage,
-                                    disponible,
-                                    tarifJournalier
-                            );
-                            break;
-
-                        case "moto":
-                            vehicule = new Moto(
-                                    immatriculation,
-                                    marque,
-                                    modele,
-                                    annee,
-                                    kilometrage,
-                                    disponible,
-                                    tarifJournalier
-                            );
-                            break;
-
-                        default:
-                            throw new DonneesVehiculeInvalidesException(
-                                    "Type de véhicule inconnu : " + type
-                            );
-                    }
+                    vehicule = FabriqueVehicule.creerVehicule(
+                            type,
+                            immatriculation,
+                            marque,
+                            modele,
+                            annee,
+                            kilometrage,
+                            disponible,
+                            tarifJournalier
+                    );
 
                     ajouterVehicule(vehicule);
 
