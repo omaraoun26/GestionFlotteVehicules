@@ -4,6 +4,5 @@ public interface Louable {
 
     void louer();
 
-    void retourner();
-
+    void retourner(double kilometresParcourus);
 }

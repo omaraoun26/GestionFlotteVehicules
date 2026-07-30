@@ -105,7 +105,8 @@ public abstract class Vehicule implements Louable, Entretenable {
     }
 
     @Override
-    public void retourner() {
+    public void retourner(double kilometresParcourus) {
+        this.kilometrage += kilometresParcourus;
         disponible = true;
     }
 

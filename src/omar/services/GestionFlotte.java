@@ -66,12 +66,14 @@ public class GestionFlotte {
         vehicule.louer();
     }
 
-    public void retournerVehicule(String immatriculation) {
-
+    public void retournerVehicule(
+            String immatriculation,
+            double kilometresParcourus
+    ) {
         Vehicule vehicule = rechercherVehicule(immatriculation);
 
         if (vehicule != null) {
-            vehicule.retourner();
+            vehicule.retourner(kilometresParcourus);
         }
     }
 

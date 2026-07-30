@@ -370,7 +370,8 @@ public class Main {
 
         try {
             gestionFlotte.retournerVehicule(
-                    immatriculation
+                    immatriculation,
+                    kilometres
             );
 
             System.out.println(
