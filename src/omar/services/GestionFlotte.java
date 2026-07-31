@@ -5,6 +5,7 @@ import omar.exceptions.VehiculeIndisponibleException;
 import java.util.ArrayList;
 import omar.exceptions.DonneesVehiculeInvalidesException;
 import omar.exceptions.KilometrageInvalideException;
+import omar.exceptions.EntretienException;
 import omar.modele.Voiture;
 import omar.modele.Camion;
 import omar.modele.Moto;
@@ -188,10 +189,20 @@ public class GestionFlotte {
         }
     }
 
-    public void envoyerEnEntretien(String immatriculation) {
+    public void envoyerEnEntretien(String immatriculation)
+            throws EntretienException {
 
         Vehicule vehicule = rechercherVehicule(immatriculation);
-
+        if (vehicule != null && vehicule.isEntretienRequis()) {
+            throw new EntretienException(
+                    "Le véhicule est déjà en entretien."
+            );
+        }
+        if (vehicule != null && !vehicule.isDisponible()) {
+            throw new EntretienException(
+                    "Impossible d'envoyer un véhicule loué en entretien."
+            );
+        }
         if (vehicule != null) {
             vehicule.setEntretienRequis(true);
             vehicule.setEtat("En entretien");

@@ -1,6 +1,7 @@
 package omar;
 
 import omar.exceptions.VehiculeIndisponibleException;
+import omar.exceptions.EntretienException;
 import omar.modele.Vehicule;
 import omar.services.GestionFlotte;
 import omar.modele.Voiture;
@@ -408,7 +409,7 @@ public class Main {
                     "Le véhicule a été envoyé en entretien."
             );
 
-        } catch (Exception e) {
+        } catch (EntretienException e) {
 
             System.out.println(
                     "Erreur lors de la mise en entretien : "
