@@ -18,10 +18,23 @@ import java.io.IOException;
 import omar.modele.Location;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.HashMap;
+
+/**
+ * Point central de la logique métier : chargement des données, gestion
+ * des locations/retours/entretiens, calcul des statistiques et génération
+ * du rapport.
+ */
 public class GestionFlotte {
 
     private ArrayList<Vehicule> flotte;
     private ArrayList<Location> historiqueLocations;
+
+    // Mémorise le nombre de jours demandés à la location (clé = immatriculation),
+    // pour pouvoir calculer le montant final au moment du retour, une fois le
+    // kilométrage parcouru connu.
+    private Map<String, Integer> joursLocationEnCours = new HashMap<>();
 
     public GestionFlotte() {
         flotte = new ArrayList<>();
@@ -49,7 +62,7 @@ public class GestionFlotte {
         return null;
     }
 
-    public void louerVehicule(String immatriculation)
+    public void louerVehicule(String immatriculation, int nombreJours)
             throws VehiculeIndisponibleException {
 
         Vehicule vehicule = rechercherVehicule(immatriculation);
@@ -67,8 +80,11 @@ public class GestionFlotte {
         }
 
         vehicule.louer();
+        joursLocationEnCours.put(immatriculation, nombreJours);
     }
 
+    // Calcule le montant à partir du nombre de jours mémorisé à la
+    // location, puis enregistre la transaction complète dans l'historique.
     public void retournerVehicule(
             String immatriculation,
             double kilometresParcourus
@@ -77,6 +93,19 @@ public class GestionFlotte {
 
         if (vehicule != null) {
             vehicule.retourner(kilometresParcourus);
+
+            int nombreJours = joursLocationEnCours.getOrDefault(immatriculation, 1);
+            double montant = vehicule.calculerTarifLocation(nombreJours);
+
+            Location location = new Location(
+                    immatriculation,
+                    nombreJours,
+                    montant,
+                    (int) kilometresParcourus
+            );
+            historiqueLocations.add(location);
+
+            joursLocationEnCours.remove(immatriculation);
         }
     }
 
@@ -88,6 +117,9 @@ public class GestionFlotte {
 
     }
 
+    // Charge la flotte depuis un CSV (type,immatriculation,marque,modele,
+    // annee,kilometrage,disponible,tarifJournalier). Une ligne invalide est
+    // signalée puis ignorée, sans interrompre le chargement des autres.
     public void chargerDepuisCSV(String nomFichier) {
 
         try (BufferedReader lecteur =
@@ -189,6 +221,8 @@ public class GestionFlotte {
         }
     }
 
+    // Signale un véhicule en entretien : rejette un véhicule déjà en
+    // entretien ou actuellement loué (voir EntretienException).
     public void envoyerEnEntretien(String immatriculation)
             throws EntretienException {
 
@@ -270,6 +304,9 @@ public class GestionFlotte {
         return total / flotte.size();
     }
 
+    // Charge l'historique des locations depuis un CSV (utilisé pour les
+    // statistiques de revenu et d'utilisation), avec la même logique de
+    // validation ligne par ligne que chargerDepuisCSV.
     public void chargerLocationsDepuisCSV(String nomFichier) {
 
         try (BufferedReader lecteur = new BufferedReader(new FileReader(nomFichier))) {
@@ -414,6 +451,9 @@ public class GestionFlotte {
 
         return compteur;
     }
+    // typeVehicule (ex. Voiture.class) permet de filtrer la flotte par
+    // sous-classe via isInstance(), sans avoir à écrire une méthode
+    // distincte pour chaque type de véhicule.
     public double calculerTauxUtilisationParType(Class<?> typeVehicule) {
 
         int totalVehiculesType = 0;
@@ -457,6 +497,8 @@ public class GestionFlotte {
             System.out.println("Aucun véhicule ne nécessite un entretien.");
         }
     }
+    // Écrit un résumé complet (statistiques + véhicules à entretenir)
+    // dans un fichier texte, pour la remise du projet.
     public void genererRapportTXT(String nomFichier) {
 
         try (BufferedWriter writer =

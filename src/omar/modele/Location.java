@@ -1,5 +1,10 @@
 package omar.modele;
 
+/**
+ * Représente une transaction de location complétée (nombre de jours,
+ * montant facturé, kilomètres parcourus) — utilisée pour l'historique
+ * et les statistiques de revenu.
+ */
 public class Location {
 
     private String immatriculation;

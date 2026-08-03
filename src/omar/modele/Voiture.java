@@ -1,5 +1,8 @@
 package omar.modele;
 
+/**
+ * Tarif : le tarif journalier de base, sans majoration ni rabais.
+ */
 public class Voiture extends Vehicule {
 
     public Voiture(String immatriculation, String marque, String modele,

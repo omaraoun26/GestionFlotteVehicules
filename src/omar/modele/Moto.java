@@ -1,5 +1,8 @@
 package omar.modele;
 
+/**
+ * Tarif : rabais de 10 % par rapport au tarif de base.
+ */
 public class Moto extends Vehicule {
 
     public Moto(String immatriculation, String marque, String modele,
