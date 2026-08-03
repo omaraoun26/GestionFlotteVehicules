@@ -9,6 +9,12 @@ import omar.modele.Camion;
 import omar.modele.Moto;
 import java.util.Scanner;
 
+/**
+ * Point d'entrée du programme : menu interactif en console permettant de
+ * charger les données, gérer la flotte (location, retour, entretien) et
+ * consulter les statistiques. Toute la logique métier est déléguée à
+ * GestionFlotte.
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -308,7 +314,7 @@ public class Main {
 
         try {
             gestionFlotte.louerVehicule(
-                    immatriculation
+                    immatriculation, nombreJours
             );
 
             System.out.println(

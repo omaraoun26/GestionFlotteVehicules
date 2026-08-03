@@ -1,5 +1,9 @@
 package omar.modele;
 
+/**
+ * Tarif : majoration de 25 % par rapport au tarif de base (véhicule
+ * plus lourd, usure et assurance plus élevées).
+ */
 public class Camion extends Vehicule {
 
     public Camion(String immatriculation, String marque, String modele,

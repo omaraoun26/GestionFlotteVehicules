@@ -3,6 +3,11 @@ import omar.interfaces.Louable;
 import omar.interfaces.Entretenable;
 import omar.exceptions.KilometrageInvalideException;
 
+/**
+ * Classe abstraite regroupant les attributs et comportements communs à
+ * tout véhicule de la flotte. Chaque sous-classe (Voiture, Camion, Moto)
+ * définit sa propre règle de calcul de tarif.
+ */
 public abstract class Vehicule implements Louable, Entretenable {
 
     private String immatriculation;
@@ -99,12 +104,14 @@ public abstract class Vehicule implements Louable, Entretenable {
                 '}';
 
     }
+    // Chaque sous-classe applique sa propre formule de tarification.
     public abstract double calculerTarifLocation(int nombreJours);
     @Override
     public void louer() {
         disponible = false;
     }
 
+    // Valide le kilométrage, puis l'ajoute au total du véhicule.
     @Override
     public void retourner(double kilometresParcourus)
             throws KilometrageInvalideException {
@@ -119,6 +126,7 @@ public abstract class Vehicule implements Louable, Entretenable {
         disponible = true;
     }
 
+    // Remet le véhicule en bon état et le rend de nouveau disponible.
     @Override
     public void effectuerEntretien() {
         entretienRequis = false;
